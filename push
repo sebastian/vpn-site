@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -e
+
+echo "Builds and pushes website"
+git stash
+jekyll build
+echo "Commit build changes"
+git commit
+git stash pop
+git push website
+# git push origin master
