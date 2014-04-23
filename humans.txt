@@ -1,0 +1,11 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Sebastian Probst Eide -- Owner/whatever -- @probst
+
+# THANKS
+
+    iodine folks: http://code.kryo.se/iodine/
+    sshuttle: https://github.com/apenwarr/sshuttle

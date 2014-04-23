@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Kleio - My Proxy</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="/css/normalize.css">
+        <link rel="stylesheet" href="/css/main.css">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div id="content">
+            <p><img src="/images/top.png" alt="My proxied laptop" /></p>
+
+<p>More often than I would want, I see myself in need of a proxy server. Maybe I need to access a website that only allows visitors from certain geographical regions, or maybe I am in a location where I do not trust people to <em>not</em> sniff my traffic. Whatever the reason, this service serves to solve the problem.</p>
+
+<p>Below are different scenarios in which I might need a proxy, along with an explanation of how to achieve it.</p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<p>In order to use this proxy service you need an account. If you don’t already have one, please get in touch with me.</p>
+
+<p>Rather than using a beast of a software like OpenVPN, I am instead using <a href="https://github.com/apenwarr/sshuttle">sshuttle</a>. It tunnels whatever you need it to over SSH. Simple and clean. Most of the explanations following below are more or less direct copies of what you would find in the <strong>sshuttle</strong> documentation. In either case you should install the <strong>sshuttle</strong> software locally before continuing.</p>
+
+<p>For when you are stuck on some paid WiFi and only want to quickly look up some details, you can also use <a href="https://github.com/yarrick/iodine">iodine</a>. Please install <strong>iodine</strong> as well, now that you do have an internet connection. Further details are explained below.</p>
+
+<h1 id="usage">Usage</h1>
+
+<p>Below are the scenarios we are looking to support:</p>
+
+<ul>
+<li>Get access to regionally restricted sites</li>
+
+<li>Protect your traffic when in public</li>
+
+<li>Gain internet access for quick lookups when travelling</li>
+</ul>
+
+<h2 id="regionally_restricted_sites">Regionally restricted sites</h2>
+
+<p><img src="/images/global.png" alt="Accessing global content" /></p>
+
+<p>Unfortunately there are still geographical boundaries influencing what websites and resources we have access to. These restrictions at times seem more arbitrary than based on sound reasoning. When it is not legally forbidden to do so, we can therefore connect to the internet through a proxy that makes it look as if we are located somewhere else than where we are.</p>
+
+<p>The proxy server runs from a data centre in New York. If you want to access a website that is restricted to US visitors, you can use the proxy to make it look as if you are based in the states.</p>
+
+<p>Using <strong>sshuttle</strong>, you would issue the following command from the command line:</p>
+<div class='highlight'><pre><code class='bash'>./sshuttle -r &lt;username&gt;@vpn.kle.io:22000 0.0.0.0/0
+</code></pre></div>
+<p>The <code>&lt;username&gt;</code> should be replaced with what your username is on the proxy.</p>
+
+<p>This will send <strong>all</strong> your communication through the proxy. Sometimes you might only want to proxy certain IP ranges. To do that, please restrict the <code>0.0.0.0/0</code> catch-all clause to only target the IPs of the destination.</p>
+
+<h2 id="in_public">In public</h2>
+
+<p>When you are in a public space, for example using an open WiFi network, you have no idea who is eavesdropping on your communication. As long as the services you are communicating with are encrypted, you should be fine, but more often than not, this isn’t the case.</p>
+
+<p><img src="/images/in-public.png" alt="When at a public space, your communication should be protected" /></p>
+
+<p>In these scenarios, you should also proxy your DNS traffic:</p>
+<div class='highlight'><pre><code class='bash'>./sshuttle --dns -r &lt;username&gt;@vpn.kle.io:22000 0.0.0.0/0
+</code></pre></div>
+<p>Like before, <code>&lt;username&gt;</code> should be replaced with your username on the proxy. In this case you really want the <code>0.0.0.0/0</code> catch all clause to ensure that all your communication passes through the proxy!</p>
+
+<h2 id="internet_on_the_go">Internet on the go</h2>
+
+<p>Often Airports and train stations, and other locations where you might find yourself in transit, do not offer free internet (even though we live in the 21st century).</p>
+
+<p><img src="/images/airport.png" alt="Sometimes you need only a little internet" /></p>
+
+<p>If all you want to do is quickly check your emails, read the latest news, or look up some details related to your flight or a reservation, paying large amounts of money for poor internet connectivity might be intolerable.</p>
+
+<p>In this case, we use <strong>iodine</strong> to tunnel our communication over DNS. Furthermore we then use <strong>sshuttle</strong> inside the <strong>iodine</strong> tunnel in order to ensure that our traffic is encrypted.</p>
+<div class='highlight'><pre><code class='bash'><span class='lineno'>1</span> 
+</code></pre></div>
+
+            <footer><a href="/">Home</a> | <a href="/about">About</a></footer>
+        </div>
+    </body>
+</html>
