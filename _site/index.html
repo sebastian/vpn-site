@@ -80,8 +80,18 @@
 <p>If all you want to do is quickly check your emails, read the latest news, or look up some details related to your flight or a reservation, paying large amounts of money for poor internet connectivity might be intolerable.</p>
 
 <p>In this case, we use <strong>iodine</strong> to tunnel our communication over DNS. Furthermore we then use <strong>sshuttle</strong> inside the <strong>iodine</strong> tunnel in order to ensure that our traffic is encrypted.</p>
-<div class='highlight'><pre><code class='bash'><span class='lineno'>1</span> 
+<div class='highlight'><pre><code class='bash'><span class='lineno'>1</span> iodine -f -P &lt;password&gt; &lt;DNS-server&gt; i.kle.io
+<span class='lineno'>2</span> ./sshuttle --dns -r &lt;username&gt;@&lt;server-ip&gt;:22000 0.0.0.0/0
 </code></pre></div>
+<p>When you have setup the iodine connection, you will be informed what IP address the server is accessible under. Use this IP when setting up the <strong>sshuttle</strong> connection.</p>
+
+<h3 id="troubleshotting">Troubleshotting</h3>
+
+<ul>
+<li>The server is running <strong>iodine</strong> version 0.6.0-rc1. You should be running the same!</li>
+
+<li>If running on a Mac, please make sure that you have <a href="http://tuntaposx.sourceforge.net/download.xhtml">tuntap</a> installed.</li>
+</ul>
 
             <footer><a href="/">Home</a> | <a href="/about">About</a></footer>
         </div>

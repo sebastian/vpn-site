@@ -3,13 +3,9 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
+    Sebastian Probst Eide -- Owner/whatever -- @probst
 
 # THANKS
 
-    <name>
-
-# TECHNOLOGY COLOPHON
-
-    HTML5, CSS3
-    Normalize.css, jQuery, Modernizr
+    iodine folks: http://code.kryo.se/iodine/
+    sshuttle: https://github.com/apenwarr/sshuttle

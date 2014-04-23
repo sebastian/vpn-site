@@ -3,6 +3,8 @@ layout: index
 title: About
 ---
 
+# Howdy!
+
 This proxy service is run by Sebastian Probst Eide.
 Feel free to get in touch at [sebastian@kle.io](mailto:sebastian@kle.io) if you have any questions.
 
