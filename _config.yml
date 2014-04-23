@@ -3,3 +3,4 @@ destination: ./_site
 safe: true
 timezone: Europe/Berlin
 port: 4000
+exclude: ['raw-images', 'README.md']
