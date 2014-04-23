@@ -24,9 +24,9 @@ Most of the explanations following below are more or less direct copies of what 
 __sshuttle__ documentation. In either case you should install the __sshuttle__ software locally before
 continuing.
 
-For when you are stuck on some paid WiFi and only want to quickly look up some details, you can also use
+For when you are stuck on some paid WiFi and only want to look up some details, you can also use
 [iodine](https://github.com/yarrick/iodine). Please install __iodine__ as well, now that you do have an
-internet connection. Further details are explained below.
+internet connection. You want version 0.6.0-rc1.
 
 # Usage
 
@@ -42,8 +42,9 @@ Below are the scenarios we are looking to support:
 
 Unfortunately there are still geographical boundaries influencing what websites and resources we have access
 to. These restrictions at times seem more arbitrary than based on sound reasoning. When it is not legally
-forbidden to do so, we can therefore connect to the internet through a proxy that makes it look as if we are
-located somewhere else than where we are.
+forbidden to do so, we can connect to the internet through a proxy that makes it look as if we are
+located somewhere else than where we are. Even if it is legally questionable it can of course be
+done, but then you bear the moral burden yourself.
 
 The proxy server runs from a data centre in New York. If you want to access a website that is restricted to US
 visitors, you can use the proxy to make it look as if you are based in the states.
@@ -56,16 +57,16 @@ Using __sshuttle__, you would issue the following command from the command line:
 
 The `<username>` should be replaced with what your username is on the proxy.
 
-This will send __all__ your communication through the proxy. Sometimes you might only want to proxy certain IP
-ranges. To do that, please restrict the `0.0.0.0/0` catch-all clause to only target the IPs of the
-destination.
+This will send __all__ your traffic through the proxy. Sometimes you might only want to proxy certain IP
+ranges. To do so, please restrict the `0.0.0.0/0` catch-all clause to only target the IP addresses of your
+destination endpoint.
 
 
 ## In public
 
 When you are in a public space, for example using an open WiFi network, you have no idea who is eavesdropping
 on your communication. As long as the services you are communicating with are encrypted, you should be
-fine, but more often than not, this isn't the case.
+fine, but more often than not, they are not.
 
 ![When at a public space, your communication should be protected](/images/in-public.png)
 
@@ -76,6 +77,7 @@ In these scenarios, you should also proxy your DNS traffic:
 {% endhighlight %}
 
 Like before, `<username>` should be replaced with your username on the proxy.
+
 In this case you really want the `0.0.0.0/0` catch all clause to ensure that all your communication passes
 through the proxy!
 
@@ -87,7 +89,7 @@ free internet (even though we live in the 21st century).
 ![Sometimes you need only a little internet](/images/airport.png)
 
 If all you want to do is quickly check your emails, read the latest news, or look up some details related to
-your flight or a reservation, paying large amounts of money for poor internet connectivity might be
+your flight or a hotel reservation, paying large amounts of money for poor internet connectivity might be
 intolerable.
 
 In this case, we use __iodine__ to tunnel our communication over DNS. Furthermore we then use __sshuttle__
