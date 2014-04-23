@@ -106,3 +106,4 @@ under. Use this IP when setting up the __sshuttle__ connection.
 - The server is running __iodine__ version 0.6.0-rc1. You should be running the same!
 - If running on a Mac, please make sure that you have
   [tuntap](http://tuntaposx.sourceforge.net/download.xhtml) installed.
+- Contact me if all else fails
